@@ -1,23 +1,27 @@
 # Temel işletim sistemi olarak güncel bir Ubuntu/Debian imajı seçiyoruz
 FROM debian:stable-slim
 
-# Betiğinizin çalışması için gereken temel araçları (bash, curl vb.) kuruyoruz
+# Windows satır sonlarını Linux biçimine çeviren 'dos2unix' aracını kuruyoruz
 RUN apt-get update && apt-get install -y \
     bash \
     curl \
+    dos2unix \
     && rm -rf /var/lib/apt/lists/*
 
-# Projenizdeki tüm dosyaları Docker konteynerinin içine kopyalıyoruz
+# Projedeki tüm dosyaları Docker konteynerinin içine kopyalıyoruz
 COPY . /app
 
 # Çalışma dizinini /app olarak belirliyoruz
 WORKDIR /app
 
-# .sh dosyanıza çalıştırma yetkisi veriyoruz
+# Windows biçimindeki satır sonlarını otomatik olarak Linux biçimine dönüştürüyoruz
+RUN dos2unix zphisher.sh
+
+# Dosyaya çalıştırma yetkisi veriyoruz
 RUN chmod +x zphisher.sh
 
 # Render'ın portunu çevre değişkeni olarak içeriye alıyoruz
 EXPOSE ${PORT}
 
-# Konteyner başladığında çalışacak ana komut
+# Sunucu başladığında çalışacak ana komut
 CMD ["/bin/bash", "zphisher.sh"]
