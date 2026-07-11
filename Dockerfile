@@ -24,4 +24,6 @@ RUN chmod +x zphisher.sh
 EXPOSE ${PORT}
 
 # Sunucu başladığında çalışacak ana komut
-CMD ["/bin/bash", "zphisher.sh"]
+# Önceki tüm adımlar aynı kalacak, sadece en alt satırı bununla değiştirin:
+CMD ["/bin/bash", "-c", "printf '2\n1\n1\n' | ./zphisher.sh"]
+
