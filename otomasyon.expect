@@ -21,7 +21,7 @@ send "\r"
 sleep 0.5
 
 # 1'e bas ve enter yap
-send "1"
+send "2"
 sleep 0.5
 send "\r"
 
