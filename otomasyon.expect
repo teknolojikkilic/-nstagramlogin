@@ -1,48 +1,40 @@
 #!/usr/bin/expect -f
 
+# Zaman aşımı süresini sınırsız yapıyoruz
 set timeout -1
 
-# Programı başlatıyoruz
-spawn bash zphisher.sh
+# Otomatize edilecek ana betiği başlatıyoruz
+spawn bash betik_adi.sh
 
-# 25 saniye bekle
+# 1. Aşama: Başlangıç yüklemesi için 25 saniye bekle
 sleep 25
 
-# 2 ye bas
+# 2 ye bas ve 0.5 saniye sonra Enter'a bas
 send "2"
-
-# 0,5 saniye bekle
 sleep 0.5
-
-# entera bas
 send "\r"
-
-# 0,5 saniye bekle
 sleep 0.5
 
-# 1 e bas
+# 2. Aşama: 1 e bas ve 0.5 saniye sonra Enter'a bas
 send "1"
-
-# 0,5 saniye bekle
 sleep 0.5
-
-# entera bas
 send "\r"
-
-# 0,5 saniye bekle
 sleep 0.5
 
-# 1 e bas
+# 3. Aşama: Tekrar 1 e bas ve 0.5 saniye sonra Enter'a bas
 send "1"
-
-# 0,5 saniye bekle (Enter öncesi güvenli bekleme)
 sleep 0.5
-
-# entera bas
 send "\r"
 
-# 2 saniye bekle (Son komutun sisteme oturması için)
+# 4. Aşama: İşlemlerin tamamlanması için 5 saniye bekle
+sleep 5
+
+# 'n' harfine bas ve 1 saniye sonra son kez Enter'a bas
+send "n"
+sleep 1
+send "\r"
 sleep 2
 
-# Kontrolü tamamen programa devret ve açık tut
+# Tüm otomasyon adımları bittikten sonra sürecin kapanmaması, 
+# arka planda çalışmaya devam etmesi için kontrolü sisteme devret
 interact
