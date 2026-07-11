@@ -7,7 +7,7 @@ set timeout -1
 spawn bash betik_adi.sh
 
 # 1. Aşama: Başlangıç yüklemesi için 25 saniye bekle
-sleep 25
+sleep 59
 
 # 2 ye bas ve 0.5 saniye sonra Enter'a bas
 send "2"
