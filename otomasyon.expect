@@ -1,26 +1,48 @@
 #!/usr/bin/expect -f
 
-# Bekleme sürelerinin sınırını (saniye cinsinden) tanımlıyoruz
 set timeout -1
 
-# Ana script'i başlatıyoruz
-spawn ./zphisher.sh
+# Programı başlatıyoruz
+spawn bash zphisher.sh
 
-# 1. Seçim: Ekran hareket edene veya ilk girdi alanı gelene kadar bekler. 
-# Buradaki "" işaretini boş bırakırsak her satır geçişini bekler.
-expect ""
+# 25 saniye bekle
+sleep 25
+
+# 2 ye bas
+send "2"
+
+# 0,5 saniye bekle
+sleep 0.5
+
+# entera bas
+send "\r"
+
+# 0,5 saniye bekle
+sleep 0.5
+
+# 1 e bas
+send "1"
+
+# 0,5 saniye bekle
+sleep 0.5
+
+# entera bas
+send "\r"
+
+# 0,5 saniye bekle
+sleep 0.5
+
+# 1 e bas
+send "1"
+
+# 0,5 saniye bekle (Enter öncesi güvenli bekleme)
+sleep 0.5
+
+# entera bas
+send "\r"
+
+# 2 saniye bekle (Son komutun sisteme oturması için)
 sleep 2
-send "2\r"
 
-# 2. Seçim: Bir sonraki adımı bekler ve 1 gönderir
-expect ""
-sleep 2
-send "1\r"
-
-# 3. Seçim: Son adımı bekler ve 1 gönderir
-expect ""
-sleep 2
-send "1\r"
-
-# Seçimler bittikten sonra script'in kapanmaması ve çalışmaya devam etmesi için kontrolü devralır
+# Kontrolü tamamen programa devret ve açık tut
 interact
